@@ -1,0 +1,12 @@
+#!/bin/sh
+#SBATCH --job-name=test_job
+#SBATCH --partition=kraken_fast
+#SBATCH --nodes=1
+#SBATCH --output=slurm.out
+
+USER=anvart
+NODE_HOME=/home/slurm/$USER-${SLURM_JOB_ID}
+PROJECT_HOME=/home/user/$USER/stormwatch
+
+srun --ntasks-per-node=1 --nodes=1 $PROJECT_HOME/scripts/test.sh $PROJECT_HOME
+exit 0

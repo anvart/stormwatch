@@ -1,0 +1,61 @@
+StormWatch Cluster Monitoring Tool
+----------------------------------
+
+Installation
+
+	0. Change PROJECT_HOME 
+	
+	PROJECT_HOME should be changed in each of the scripts inside scripts/jobs directory:
+	- job-setup
+	- job-start-aggregator
+	- job-stop-aggregator
+	- job-start-workers
+	- job-stop-workers
+
+	1. Download dependencies
+	A helper script download.sh is located inside /distr directory. Does not require any parameters, downloads, unpacks and cleans up everything in its own directory. Before running please be sure that directory contains nothing but this script.
+
+	> distr/download.sh
+
+	2. Build sources 
+	Another helper called pre-setup-aggregator does the job. Since some dependencies are missing on the GRU, everything is done by one of the nodes from cluster. Before running the script please be sure that directory /dependencies contains only stormwatch directory
+
+	> scripts/setup.sh
+
+
+Configuration
+
+	All the configuration files are located inside /conf directory. Script will make all necessary changes and copy configs to corresponding locations.
+
+	> scripts/configure.sh
+
+
+Running Jobs on Cluster
+
+
+	Starting Aggregator
+	
+	> scripts/start-aggregator
+
+
+	Starting Workers
+
+	> scripts/start-workers
+
+
+	Seeing the Result
+
+	By Default, the StormWathc will be accessible at http://claudio06.ifi.uzh.ch:8086/
+    
+
+    Stopping Workers
+
+    > scripts/start-workers
+
+
+	Stopping Aggregator
+
+	> scripts/stop-aggregator
+
+IMPORTANT
+	- please not touch the directory /tmp/www it is really temporary directory but currently it is needed (a mockup for storm REST API is there)

@@ -1,0 +1,104 @@
+{% extends "layouts/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+    <h2>Overview</h2>
+
+    <div class="panel panel-default panel-table">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Cluster Summary</div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>Storm Version</th>
+                <th>Nimbus Uptime</th>
+                <th>Supervisors</th>
+                <th>Used Slots</th>
+                <th>Free Slots</th>
+                <th>Total Slots</th>
+                <th>Executors</th>
+                <th>Tasks</th>
+            </tr>
+
+            <tr>
+                <td>{{ cluster_summary.stormVersion }}</td>
+                <td>{{ cluster_summary.nimbusUptime }}</td>
+                <td>{{ cluster_summary.supervisors }}</td>
+                <td>{{ cluster_summary.slotsUsed }}</td>
+                <td>{{ cluster_summary.slotsFree }}</td>
+                <td>{{ cluster_summary.slotsTotal }}</td>
+                <td>{{ cluster_summary.executorsTotal }}</td>
+                <td>{{ cluster_summary.tasksTotal }}</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="panel panel-default panel-table">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Topology Summary</div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Uptime</th>
+                <th>Num Workers</th>
+                <th>Num Executors</th>
+                <th>Num Tasks</th>
+            </tr>
+
+
+            {% for topology in topology_summary.topologies %}
+                <tr>
+                    <td><a href="/topology_overview/{{ topology.id }}">{{ topology.name }}</a></td>
+                    <td>{{ topology.id }}</td>
+                    <td>{{ topology.status }}</td>
+                    <td>{{ topology.uptime }}</td>
+                    <td>{{ topology.workersTotal }}</td>
+                    <td>{{ topology.executorsTotal }}</td>
+                    <td>{{ topology.tasksTotal }}</td>
+                </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+    <div class="panel panel-default panel-table">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Supervisor Summary</div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Host</th>
+                <th>Uptime</th>
+                <th>Slots</th>
+                <th>Used Slots</th>
+            </tr>
+
+
+            {% for supervisor in supervisor_summary.supervisors %}
+                <tr>
+                    <td>{{ supervisor.id }}</td>
+                    <td>{{ supervisor.host }}</td>
+                    <td>{{ supervisor.uptime }}</td>
+                    <td>{{ supervisor.slotsTotal }}</td>
+                    <td>{{ supervisor.slotsUsed }}</td>
+                </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+
+
+{% endblock %}

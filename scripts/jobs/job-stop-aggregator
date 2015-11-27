@@ -1,0 +1,15 @@
+#!/bin/sh
+#SBATCH --job-name=stop-aggregator
+#SBATCH --partition=kraken_fast
+#SBATCH --nodes=1
+#SBATCH --output=slurm.out
+
+PROJECT_HOME=/home/user/anvart/stormwatch
+
+NODE_GRAPHITE="claudio06"
+NODE_ALL="claudio[06-07]"
+
+FILE_JOB_ID=$PROJECT_HOME/tmp/aggregator.job.id
+START_JOB_ID=$(head -n 1 $FILE_JOB_ID)
+
+srun --ntasks-per-node=1 --nodes=1 --nodelist=$NODE_GRAPHITE $PROJECT_HOME/scripts/jobs/node/stop-aggregator.sh $PROJECT_HOME

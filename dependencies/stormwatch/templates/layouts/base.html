@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>StormWatch 0.1</title>
+
+    <script src="{% static "js/jquery-2.1.4.min.js" %}"></script>
+
+    <link rel="stylesheet" href="{% static "css/bootstrap-dropdown-checkbox.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+
+</head>
+
+<body>
+
+<div class="container">
+    {% block title %}
+        <a href="/"><h1>StormWatch 0.3.1</h1></a>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock content %}
+</div>
+
+
+{% bootstrap_javascript %}
+</body>
+</html>

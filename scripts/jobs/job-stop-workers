@@ -1,0 +1,17 @@
+#!/bin/sh
+#SBATCH --job-name=stop-workers
+#SBATCH --partition=kraken_fast
+#SBATCH --nodes=2
+#SBATCH --output=slurm.out
+
+PROJECT_HOME=/home/user/anvart/stormwatch
+
+NODE_GRAPHITE="claudio06"
+NODE_ALL="claudio[06-07]"
+
+FILE_JOB_ID=$PROJECT_HOME/tmp/workers.job.id
+START_JOB_ID=$(head -n 1 $FILE_JOB_ID)
+
+srun --ntasks-per-node=1 --nodelist=$NODE_ALL $PROJECT_HOME/scripts/jobs/node/stop-collectd.sh $PROJECT_HOME /home/slurm/$USER-${START_JOB_ID}/collectd
+
+scancel $START_JOB_ID

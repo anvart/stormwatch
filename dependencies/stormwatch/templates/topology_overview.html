@@ -1,0 +1,48 @@
+{% extends "layouts/base.html" %}
+
+{% load bootstrap3 %}
+{% load static %}
+
+{% block content %}
+
+    <h2>Topology Overview</h2>
+
+    <script src="{% static "js/raphael-min.js" %}"></script>
+    <script src="{% static "js/dracula_graffle.js" %}"></script>
+    <script src="{% static "js/dracula_graph.js" %}"></script>
+    <script src="{% static "js/d3.min.js" %}"></script>
+    <script src="{% static "js/cubism.v1.min.js" %}"></script>
+    <script src="{% static "js/bootstrap-dropdown-checkbox.min.js" %}"></script>
+    <script src="{% static "js/topology.js" %}"></script>
+
+    <input type="hidden" id="stormwatch_topology_id" value="{{ topology_id }}">
+    <input type="hidden" id="graphite_api_url" value="{{ graphite_api_url }}">    
+
+    <div id="controls" class="row">
+        <div id="controls-left" class="col-md-6">
+            <button>activate</button>
+            <button>deactivate</button>
+            <button>rebalance</button>
+        </div>
+        <div id="controls-right" class="col-md-6">
+            <div id="controls-metrics-selector" style="float: left; margin-right: 1em;"></div>
+            {% comment %}http://acquisio.github.io/bootstrap-dropdown-checkbox/{% endcomment %}
+            <button>zoom +</button>
+            <button>zoom -</button>
+            <button>time range</button>
+        </div>
+    </div>
+
+    <div id="vis">
+        <div id="vis-graph">
+
+        </div>
+        <div id="vis-monitor">
+        </div>
+
+        <div class="clr"></div>
+    </div>
+
+
+
+{% endblock %}
